@@ -2,19 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
+  // initialize pokemon data array
   const [pokemon, setPokemon] = useState([]);
   const offset = useRef(31);
+  // fetch promise to get and assign pokemon data
   const fetchPokemon = offset => {
-    fetch(`/pokemon?limit=21&offset=${offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=21&offset=${offset}`)
       .then(res => res.json())
       .then(data => setPokemon(data.results))
       .catch(err => console.log(err));
   };
+  // mimics componentDidMount lifecycle
   useEffect(() => {
     fetchPokemon(offset.current);
   }, [offset]);
 
-  console.log(pokemon);
   return (
     <div className="container-fluid">
       <div className={"row bg-light"}>
