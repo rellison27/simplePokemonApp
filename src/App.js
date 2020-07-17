@@ -5,7 +5,7 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   const offset = useRef(31);
   const fetchPokemon = offset => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=21&offset=${offset}`)
+    fetch(`/pokemon?limit=21&offset=${offset}`)
       .then(res => res.json())
       .then(data => setPokemon(data.results))
       .catch(err => console.log(err));
